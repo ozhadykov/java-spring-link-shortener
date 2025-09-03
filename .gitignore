@@ -1,0 +1,55 @@
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.sts4-cache
+.springBeans
+.spring.properties
+
+### IntelliJ IDEA ###
+.idea/
+.vscode/
+*.iws
+*.iml
+*.ipr
+/out/
+/target/
+/.gradle
+/.mvn
+.gradle-tooling.log
+
+### Gradle ###
+.gradle
+/build/
+/out/
+
+### Maven ###
+target/
+
+### Spring Boot ###
+/target/
+/classes/
+/test-classes/
+/test-results/
+/generated-sources/
+
+# Log files
+*.log
+
+# Temp files
+*.tmp
+
+# Miscellaneous
+/src/main/resources/static/
+/src/main/resources/templates/
+/src/main/resources/public/
+
+# IDE files
+*.iml
+.idea
+.vscode
+.classpath
+.project
+.settings
