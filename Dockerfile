@@ -5,6 +5,7 @@ FROM maven:3.9.11-eclipse-temurin-21 AS builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
+
 # Build the project, creating the .jar file
 RUN mvn clean package -DskipTests
 
