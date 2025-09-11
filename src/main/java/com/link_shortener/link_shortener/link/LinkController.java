@@ -1,28 +1,27 @@
 package com.link_shortener.link_shortener.link;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class LinkController {
 
-    private LinkRepository linkRepository;
+    private final LinkShortenerService linkShortenerService;
 
     @Autowired
-    public LinkController(LinkRepository linkRepository) {
-        this.linkRepository = linkRepository;
-    }
-
-    public LinkController() {
-        super();
+    public LinkController(LinkShortenerService linkShortenerService) {
+        this.linkShortenerService = linkShortenerService;
     }
 
 
-    @GetMapping("/link")
-    public List<Link> getLink() {
-        return linkRepository.findAll();
+    @PostMapping("/create-link")
+    public ResponseEntity<String> createLink(@RequestBody String link) {
+        String shortLink = this.linkShortenerService.createShortLink(link);
+        return ResponseEntity.status(HttpStatus.CREATED).body(shortLink);
     }
 }
