@@ -24,4 +24,5 @@ public class LinkController {
         String shortLink = this.linkShortenerService.createShortLink(link);
         return ResponseEntity.status(HttpStatus.CREATED).body(shortLink);
     }
+
 }
