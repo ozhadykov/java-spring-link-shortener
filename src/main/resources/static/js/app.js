@@ -26,36 +26,24 @@ async function shortenUrl() {
         console.log(url)
         const response = await fetch(url, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ link: originalUrl }),
         });
 
-        const data = await response.json();
+        if (response.ok) {
+            const data = await response.json();
+            shortenedUrlDiv.textContent = data.shortUrl;
+            result.classList.add('show');
 
-        console.log(data)
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
     }catch (e){
         console.log(e.message)
     }
 
-    // Mock shortened URL generation
-    setTimeout(() => {
-        const shortId = generateShortId();
-        const shortenedUrl = `https://lnk.short/${shortId}`;
-
-        shortenedUrlDiv.textContent = shortenedUrl;
-        result.classList.add('show');
-
-        btn.textContent = originalText;
-        btn.disabled = false;
-    }, 1000);
-}
-
-function generateShortId() {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = '';
-    for (let i = 0; i < 6; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
 }
 
 function isValidUrl(string) {

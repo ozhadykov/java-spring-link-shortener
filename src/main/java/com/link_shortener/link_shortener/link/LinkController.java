@@ -20,9 +20,10 @@ public class LinkController {
 
 
     @PostMapping("/create-link")
-    public ResponseEntity<String> createLink(@RequestBody String link) {
-        String shortLink = this.linkShortenerService.createShortLink(link);
-        return ResponseEntity.status(HttpStatus.CREATED).body(shortLink);
+    public ResponseEntity<CreateLinkResponse> createLink(@RequestBody CreateLinkRequest link) {
+        String shortLink = this.linkShortenerService.createShortLink(link.getLink());
+        CreateLinkResponse response = new CreateLinkResponse(shortLink);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }
