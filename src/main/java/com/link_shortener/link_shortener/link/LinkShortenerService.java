@@ -20,7 +20,7 @@ public class LinkShortenerService {
     public String getOriginalLink(String shortLinkId) {
         return this.linkRepository.findByShortURL(shortLinkId)
                 .map(Link::getOriginalURL)
-                .orElseThrow(() -> new RuntimeException("Link not found"));
+                .orElseThrow(() -> new LinkNotFoundException("Link not found"));
     }
 
     public String createShortLink(String link) {

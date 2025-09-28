@@ -241,3 +241,18 @@ body {
         width: 100%;
     }
 }
+
+
+/*
+404 page
+*/
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    p {
+        text-align: center;
+    }
+}
