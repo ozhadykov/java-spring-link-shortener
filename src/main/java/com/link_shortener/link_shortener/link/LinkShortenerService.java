@@ -1,6 +1,7 @@
 package com.link_shortener.link_shortener.link;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,9 +9,18 @@ public class LinkShortenerService {
 
     private final LinkRepository linkRepository;
 
+    @Value("${app.base-url}")
+    private String baseUrl;
+
     @Autowired
     public LinkShortenerService(LinkRepository linkRepository) {
         this.linkRepository = linkRepository;
+    }
+
+    public String getOriginalLink(String shortLinkId) {
+        return this.linkRepository.findByShortURL(shortLinkId)
+                .map(Link::getOriginalURL)
+                .orElseThrow(() -> new RuntimeException("Link not found"));
     }
 
     public String createShortLink(String link) {
@@ -23,7 +33,7 @@ public class LinkShortenerService {
         this.linkRepository.save(newLink);
 
         // return short URL
-        return "https://link.short/" + shortCode;
+        return this.baseUrl + "r/" + shortCode;
     }
 
     private String generateShortCode() {
@@ -33,21 +43,15 @@ public class LinkShortenerService {
         int n = 8;
         String shortURL;
 
-        while (true) {
-            // generate random string
+        // generate random string
+        do {
             StringBuilder sb = new StringBuilder(n);
             for (int i = 0; i < n; i++) {
                 int index = (int)(AlphaNumericString.length() * Math.random());
                 sb.append(AlphaNumericString.charAt(index));
             }
-
             shortURL = sb.toString();
-
-            // check if code is there
-            Link linkByShortURL = this.linkRepository.findByShortURL(shortURL);
-            if (linkByShortURL == null)
-                break;
-        }
+        } while (this.linkRepository.findByShortURL(shortURL).isPresent());
 
         return shortURL;
     }

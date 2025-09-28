@@ -22,7 +22,7 @@ async function shortenUrl() {
     btn.disabled = true;
 
     try {
-        const url = window.location.origin + "/create-link"
+        const url = window.location.origin + "/r/create-link"
         console.log(url)
         const response = await fetch(url, {
             method: "POST",
