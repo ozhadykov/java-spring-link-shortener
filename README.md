@@ -1,59 +1,94 @@
-# Cloud-Native Link Shortener 🚀
+# Java Link Shortener
 
-This is a simple link shortener application built with Java and Spring Boot. The primary goal of this project is educational—to gain hands-on experience with modern cloud-native technologies and best practices.
+![Java CI with Maven](https://github.com/ozhadykov/java-link-shortener/actions/workflows/ci.yml/badge.svg)
 
-It serves as a practical exercise in building a full-stack application, containerizing it with **Docker**  , defining infrastructure as code with **Terraform**  , and automating the entire deployment process to **AWS** with **GitHub Actions** .
+A robust, full-stack link shortener application built with Java and Spring Boot. This project demonstrates modern backend development practices, including a clean REST API, a deterministic ID-to-link hashing strategy, and a complete CI pipeline for automated testing.
 
----
+## Features
 
-## Tech Stack 🛠️
+- **Collision-Free Short Links:** Uses `hashids` to encode database IDs into unique, non-sequential short codes, eliminating the risk of collisions.
+- **REST API:** A clean, well-defined API for creating and retrieving links.
+- **Backend Validation:** Robust server-side validation for incoming URLs.
+- **Custom Error Handling:** Provides user-friendly custom 404 pages and specific JSON error responses for the API.
+- **Unit Tested:** Core business logic is verified with a suite of unit tests using JUnit 5 and Mockito.
+- **CI/CD Pipeline:** Includes a GitHub Actions workflow that automatically tests every push and pull request, ensuring code quality and stability.
+- **Dockerized Database:** Utilizes Docker Compose for easy and consistent local development database setup.
 
-* **Backend:** Java 21, Spring Boot (Spring Web, Spring Data JPA)  
-* **Database:** PostgreSQL  
-* **Containerization:** Docker  
-* **Infrastructure as Code (IaC):** Terraform 
-* **Cloud Provider:** AWS (Fargate, RDS)  
-* **CI/CD:** GitHub Actions 
+## Tech Stack
 
----
+- **Backend:** Java 21, Spring Boot (Web, Data JPA, Validation)
+- **Database:** PostgreSQL
+- **Build & Dependencies:** Maven
+- **ID Hashing:** [Hashids](https://hashids.org/java/)
+- **Testing:** JUnit 5, Mockito, AssertJ
+- **CI/CD:** GitHub Actions
+- **Containerization:** Docker, Docker Compose
 
-## Project Goals ✅
+## Getting Started
 
-This project aims to demonstrate a solid understanding of the full software development lifecycle, including:
-
-* Implementing a robust REST API with Spring Boot.
-* Containerizing the application using Docker for portability and consistent environments.
-* Defining and managing all required cloud infrastructure on AWS programmatically using Terraform.
-* Setting up a complete CI/CD pipeline with GitHub Actions for automated builds, testing, and deployments.  
-* Following best practices for project structure, development workflows, and cloud architecture.
-
----
-
-## Getting Started (Local Development)
-
-To run this project on your local machine, you'll need to have Docker and Docker Compose installed.
+To run this project on your local machine, you will need Java 21 (or higher) and Docker installed.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/ozhadykov/java-spring-link-shortener
+    git clone https://github.com/ozhadykov/java-link-shortener.git
+    cd java-link-shortener
     ```
 
-2.  **Navigate to the project directory:**
+2.  **Start the Database:**
+    Use Docker Compose to start the PostgreSQL database container in the background.
     ```bash
-    cd java-spring-link-shortener
+    docker-compose up -d
     ```
 
-3.  **Run the application using Docker Compose:**
-    This command will build the Spring Boot application image and start both the application and the PostgreSQL database containers.
+3.  **Run the Application:**
+    Use the Maven wrapper to run the Spring Boot application.
     ```bash
-    docker compose up --build
+    ./mvnw spring-boot:run
     ```
 
-4.  **Access the application:**
-    Once the containers are running, the API will be available at `http://localhost:8080`.
+4.  **Access the Application:**
+    The frontend is available at `http://localhost:8080`.
 
----
+## API Endpoints
 
-## Project Status
+### Create a Short Link
 
-🚧 **Project Status: In Progress** 🚧
+- **Endpoint:** `POST /r/create-link`
+- **Request Body:**
+  ```json
+  {
+    "link": "https://your-long-url.com/goes/here"
+  }
+  ```
+- **Success Response (201 CREATED):**
+  ```json
+  {
+    "shortUrl": "http://localhost:8080/r/gYvA7"
+  }
+  ```
+- **Error Response (400 BAD REQUEST):**
+  ```json
+  {
+    "link": "Invalid URL format"
+  }
+  ```
+
+### Redirect to Original URL
+
+- **Endpoint:** `GET /r/{shortCode}`
+- **Example:** `GET http://localhost:8080/r/gYvA7`
+- **Response:** An HTTP 302 Redirect to the original URL.
+
+## Running Tests
+
+To run the complete test suite, execute the following command:
+
+```bash
+./mvnw test
+```
+
+## Future Improvements
+
+- **User Authentication:** Implement user accounts to allow users to manage their own links.
+- **Integration Testing:** Add a suite of integration tests to verify the interactions between the controller, service, and database layers.
+- **API Documentation:** Integrate `springdoc-openapi` to generate a Swagger UI for the REST API.
