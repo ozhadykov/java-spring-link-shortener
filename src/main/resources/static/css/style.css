@@ -256,3 +256,13 @@ body {
         text-align: center;
     }
 }
+
+/*
+ Login page
+*/
+
+.input-form .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

@@ -3,7 +3,7 @@ package com.link_shortener.link_shortener.user;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -22,14 +22,19 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "username")
+    private String userName;
+
+
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String password, String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.userName = userName;
     }
 
     public int getId() {
@@ -70,6 +75,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override
