@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkShort - URL Shortener</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div class="container">
+    <div class="header">
+        <h1 class="logo">LinkShort</h1>
+        <p class="subtitle">Shorten your URLs instantly</p>
+    </div>
 
+    <div class="form input-form">
+        <div class="input-group">
+            <input
+                    type="email"
+                    class="input"
+                    id="urlInput"
+                    placeholder="Login (Email)"
+                    required
+            />
+            <input
+                    type="password"
+                    class="input"
+                    id="password"
+                    placeholder="Password"
+                    required
+            />
+        </div>
+        <button class="btn">
+            Login
+        </button>
+    </div>
+</div>
+<script src="/js/login.js"></script>
 </body>
 </html>
