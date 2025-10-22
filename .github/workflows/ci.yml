@@ -37,4 +37,6 @@ jobs:
         distribution: 'temurin'
 
     - name: Run tests with Maven
+      env:
+        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
       run: ./mvnw test
