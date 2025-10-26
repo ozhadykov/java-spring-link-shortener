@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
 
     @GetMapping("/")
-    public String getIndexPage(){
+    public String getIndexPage() {
         return "index";
+    }
+
+    @GetMapping("/shorten")
+    public String getShortenPage() {
+        return "shorten";
     }
 }

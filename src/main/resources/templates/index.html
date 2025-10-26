@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Short - Shorten URLs Instantly</title>
+    <link rel="stylesheet" href="/css/index.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">⚡ Link Short</div>
+        <p class="tagline">Shorten URLs in Seconds</p>
+        <p class="subtitle">Transform long, unwieldy URLs into short, memorable links. Fast, simple, and secure.</p>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <span class="feature-icon">🚀</span>
+            <span class="feature-text">Instant URL shortening with no registration required</span>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">📊</span>
+            <span class="feature-text">Track clicks and analytics for your links</span>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">🔒</span>
+            <span class="feature-text">Secure and reliable link management</span>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">⏱️</span>
+            <span class="feature-text">Custom expiration times for temporary links</span>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <form th:action="@{/shorten}">
+            <button class="btn" type="submit">Create Quick Link (24h)</button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <button class="btn btn-secondary" onclick="location.href='/login'">Login to Your Account</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">Links Created</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Active Users</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Uptime</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add smooth animations on load
+    document.addEventListener('DOMContentLoaded', () => {
+        const features = document.querySelectorAll('.feature');
+        features.forEach((feature, index) => {
+            feature.style.opacity = '0';
+            feature.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                feature.style.transition = 'all 0.5s ease-out';
+                feature.style.opacity = '1';
+                feature.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    });
+</script>
+</body>
+</html>

@@ -41,7 +41,6 @@ target/
 *.tmp
 
 # Miscellaneous
-/src/main/resources/templates/
 /src/main/resources/public/
 
 # IDE files
