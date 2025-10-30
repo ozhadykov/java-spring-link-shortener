@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkShort - URL Shortener</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/link-short.css">
 </head>
 <body>
 <div class="container">
@@ -23,9 +23,12 @@
                     required
             >
         </div>
-        <button class="btn" onclick="shortenUrl()">
-            Shorten URL
-        </button>
+        <div class="btns-container d-flex flex-col gap-2">
+            <button class="btn" onclick="shortenUrl()">
+                Shorten URL
+            </button>
+            <button class="btn btn-secondary" onclick="location.href='/'">Back to main</button>
+        </div>
     </div>
 
     <div class="result" id="result">
