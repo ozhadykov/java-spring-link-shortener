@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkShort - URL Shortener</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 class="logo">LinkShort</h1>
+        <p class="subtitle">Shorten your URLs instantly</p>
+    </div>
+
+    <div class="form">
+        <div class="input-group">
+            <input
+                    type="url"
+                    class="input"
+                    id="urlInput"
+                    placeholder="Paste your long URL here..."
+                    required
+            >
+        </div>
+        <button class="btn" onclick="shortenUrl()">
+            Shorten URL
+        </button>
+    </div>
+
+    <div class="result" id="result">
+        <div class="result-label">Your shortened URL:</div>
+        <div class="shortened-url">
+            <div class="url-text" id="shortenedUrl"></div>
+            <button class="copy-btn" onclick="copyUrl()">Copy</button>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">1.2M+</div>
+            <div class="stat-label">URLs Shortened</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Uptime</div>
+        </div>
+    </div>
+</div>
+<script src="/js/app.js"></script>
+</body>
+</html>
