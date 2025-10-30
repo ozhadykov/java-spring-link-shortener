@@ -15,4 +15,9 @@ public class PageController {
     public String getShortenPage() {
         return "shorten";
     }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
 }
